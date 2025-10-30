@@ -23,6 +23,10 @@ return Application::configure(basePath: dirname(__DIR__))
             Route::prefix('api/{tenant}')
                 ->group(base_path('routes/api.php'));
 
+            // Webhook routes (public, no auth)
+            Route::prefix('api/webhooks')
+                ->group(base_path('routes/webhooks.php'));
+
             // Web routes
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
