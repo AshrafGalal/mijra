@@ -45,8 +45,12 @@ return [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
         'redirect' => env('FACEBOOK_REDIRECT_URI'),
-        'base_url' => env('FACEBOOK_BASE_URL'),
+        'base_url' => env('FACEBOOK_BASE_URL', 'https://graph.facebook.com'),
+        'page_access_token' => env('FACEBOOK_PAGE_ACCESS_TOKEN'),
+        'verify_token' => env('FACEBOOK_VERIFY_TOKEN'),
         'scopes' => [
+            'pages_messaging',
+            'pages_manage_metadata',
             'instagram_business_manage_messages',
             'whatsapp_business_manage_events',
             'instagram_manage_messages',
@@ -62,6 +66,7 @@ return [
         'client_secret' => env('SHOPIFY_CLIENT_SECRET'),
         'redirect' => env('SHOPIFY_REDIRECT_URI'),
         'base_url' => env('SHOPIFY_BASE_URL'),
+        'webhook_secret' => env('SHOPIFY_WEBHOOK_SECRET'),
         'scopes' => [
             'read_customers',
             'write_customers',
@@ -69,8 +74,8 @@ return [
             'write_payment_customizations',
             'read_products',
             'write_products',
-            'customer_read_orders',
-            'customer_write_orders',
+            'read_orders',
+            'write_orders',
         ],
     ],
 

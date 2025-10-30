@@ -88,8 +88,13 @@ class ConversationController extends Controller
             attachments: $request->input('attachments', [])
         );
 
-        // TODO: Dispatch job to send message to platform (WhatsApp, Facebook, etc.)
-        // dispatch(new SendPlatformMessageJob($message));
+        // Dispatch job to send message to platform based on conversation platform
+        match ($conversation->platform) {
+            'whatsapp' => dispatch(new \App\Jobs\SendWhatsAppMessageJob($message)),
+            'facebook' => dispatch(new \App\Jobs\SendFacebookMessageJob($message)),
+            'instagram' => dispatch(new \App\Jobs\SendInstagramMessageJob($message)),
+            default => null,
+        };
 
         return ApiResponse::success(
             message: 'Message sent successfully',

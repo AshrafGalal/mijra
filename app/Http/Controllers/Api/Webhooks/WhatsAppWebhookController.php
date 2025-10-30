@@ -132,8 +132,6 @@ class WhatsAppWebhookController extends Controller
      */
     protected function handleIncomingMessage(array $message, array $metadata): void
     {
-        // This will be implemented in the next step
-        // For now, just log it
         Log::info('WhatsApp message received', [
             'message_id' => $message['id'] ?? null,
             'from' => $message['from'] ?? null,
@@ -141,7 +139,7 @@ class WhatsAppWebhookController extends Controller
         ]);
 
         // Dispatch job to process message asynchronously
-        // dispatch(new ProcessWhatsAppMessageJob($message, $metadata));
+        dispatch(new \App\Jobs\ProcessWhatsAppMessageJob($message, $metadata));
     }
 
     /**
@@ -149,14 +147,13 @@ class WhatsAppWebhookController extends Controller
      */
     protected function handleStatusUpdate(array $status, array $metadata): void
     {
-        // This will be implemented in the next step
         Log::info('WhatsApp status update', [
             'message_id' => $status['id'] ?? null,
             'status' => $status['status'] ?? null,
         ]);
 
         // Dispatch job to update message status
-        // dispatch(new UpdateWhatsAppMessageStatusJob($status));
+        dispatch(new \App\Jobs\UpdateWhatsAppMessageStatusJob($status));
     }
 }
 
