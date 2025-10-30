@@ -79,14 +79,4 @@ return [
         'secret_key' => env('STRIP_SECRET_KEY'),
         'webhook_secret' => env('STRIP_WEBHOOK_SECRET'),
     ],
-
-    'whatsapp' => [
-        'api_version' => env('WHATSAPP_API_VERSION', 'v21.0'),
-        'phone_number_id' => env('WHATSAPP_PHONE_NUMBER_ID'),
-        'business_account_id' => env('WHATSAPP_BUSINESS_ACCOUNT_ID'),
-        'access_token' => env('WHATSAPP_ACCESS_TOKEN'),
-        'app_secret' => env('WHATSAPP_APP_SECRET'),
-        'verify_token' => env('WHATSAPP_VERIFY_TOKEN'),
-        'base_url' => env('WHATSAPP_BASE_URL', 'https://graph.facebook.com'),
-    ],
 ];

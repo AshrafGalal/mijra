@@ -22,7 +22,6 @@ use App\Http\Controllers\Api\Tenant\TemplateController;
 use App\Http\Controllers\Api\Tenant\UserController;
 use App\Http\Controllers\Api\Tenant\WorkflowController;
 use App\Http\Controllers\Api\Tenant\WorkHourController;
-use App\Http\Controllers\Api\Tenant\ConversationController;
 use App\Http\Controllers\UploadFileController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,19 +62,6 @@ Route::group(['middleware' => ['auth:sanctum', 'tenant', 'setTimeZone', 'locale'
             // Customer Feedback
             Route::get('customer-feedback/statics', [CustomerFeedbackController::class, 'statics']);
             Route::apiResource('customer-feedback', CustomerFeedbackController::class);
-
-            // Conversations & Messages
-            Route::get('conversations/statistics', [ConversationController::class, 'statistics']);
-            Route::get('conversations/{conversation}/messages', [ConversationController::class, 'messages']);
-            Route::post('conversations/{conversation}/messages', [ConversationController::class, 'sendMessage']);
-            Route::post('conversations/{conversation}/assign', [ConversationController::class, 'assign']);
-            Route::post('conversations/{conversation}/unassign', [ConversationController::class, 'unassign']);
-            Route::patch('conversations/{conversation}/status', [ConversationController::class, 'updateStatus']);
-            Route::post('conversations/{conversation}/mark-read', [ConversationController::class, 'markAsRead']);
-            Route::post('conversations/{conversation}/notes', [ConversationController::class, 'addNote']);
-            Route::post('conversations/{conversation}/tags', [ConversationController::class, 'addTags']);
-            Route::delete('conversations/{conversation}/tags', [ConversationController::class, 'removeTags']);
-            Route::apiResource('conversations', ConversationController::class)->only(['index', 'show']);
 
             // round robin assignment settings
             Route::group(['prefix' => 'settings'], function () {
