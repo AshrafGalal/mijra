@@ -62,7 +62,7 @@ class ProcessFacebookMessageJob implements ShouldQueue
             $messageType = $this->determineMessageType($message);
 
             // Create inbound message
-            $messageService->createInboundMessage(
+            $inboundMessage = $messageService->createInboundMessage(
                 conversationId: $conversation->id,
                 content: $text ?: $this->getDefaultContent($messageType),
                 type: $messageType,
@@ -75,6 +75,17 @@ class ProcessFacebookMessageJob implements ShouldQueue
                 ],
                 attachments: $attachments
             );
+
+            // Auto-assign and check automated replies
+            if (!$conversation->assigned_to) {
+                $autoAssignmentService = app(\App\Services\Tenant\AutoAssignmentService::class);
+                if ($autoAssignmentService->isEnabled()) {
+                    $autoAssignmentService->autoAssign($conversation->fresh());
+                }
+            }
+
+            $automatedReplyService = app(\App\Services\Tenant\AutomatedReplyService::class);
+            $automatedReplyService->processMessage($inboundMessage, $conversation->fresh());
 
             Log::info('Facebook message processed successfully', [
                 'message_id' => $messageId,

@@ -62,7 +62,7 @@ class ProcessWhatsAppMessageJob implements ShouldQueue
             $attachments = $this->extractAttachments($type);
 
             // Create inbound message
-            $messageService->createInboundMessage(
+            $message = $messageService->createInboundMessage(
                 conversationId: $conversation->id,
                 content: $content,
                 type: $this->mapWhatsAppTypeToMessageType($type),
@@ -74,6 +74,18 @@ class ProcessWhatsAppMessageJob implements ShouldQueue
                 ],
                 attachments: $attachments
             );
+
+            // Auto-assign conversation if unassigned
+            if (!$conversation->assigned_to) {
+                $autoAssignmentService = app(\App\Services\Tenant\AutoAssignmentService::class);
+                if ($autoAssignmentService->isEnabled()) {
+                    $autoAssignmentService->autoAssign($conversation->fresh());
+                }
+            }
+
+            // Check for automated replies
+            $automatedReplyService = app(\App\Services\Tenant\AutomatedReplyService::class);
+            $automatedReplyService->processMessage($message, $conversation->fresh());
 
             Log::info('WhatsApp message processed successfully', [
                 'message_id' => $messageId,

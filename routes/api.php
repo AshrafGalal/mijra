@@ -77,6 +77,19 @@ Route::group(['middleware' => ['auth:sanctum', 'tenant', 'setTimeZone', 'locale'
             Route::delete('conversations/{conversation}/tags', [ConversationController::class, 'removeTags']);
             Route::apiResource('conversations', ConversationController::class)->only(['index', 'show']);
 
+            // Campaigns
+            Route::get('campaigns/statistics', [\App\Http\Controllers\Api\Tenant\CampaignController::class, 'statistics']);
+            Route::post('campaigns/{campaign}/start', [\App\Http\Controllers\Api\Tenant\CampaignController::class, 'start']);
+            Route::post('campaigns/{campaign}/pause', [\App\Http\Controllers\Api\Tenant\CampaignController::class, 'pause']);
+            Route::post('campaigns/{campaign}/resume', [\App\Http\Controllers\Api\Tenant\CampaignController::class, 'resume']);
+            Route::get('campaigns/{campaign}/analytics', [\App\Http\Controllers\Api\Tenant\CampaignController::class, 'analytics']);
+            Route::apiResource('campaigns', \App\Http\Controllers\Api\Tenant\CampaignController::class);
+
+            // Analytics
+            Route::get('analytics/dashboard', [\App\Http\Controllers\Api\Tenant\AnalyticsController::class, 'dashboard']);
+            Route::get('analytics/time-series', [\App\Http\Controllers\Api\Tenant\AnalyticsController::class, 'timeSeries']);
+            Route::get('analytics/customer-lifecycle', [\App\Http\Controllers\Api\Tenant\AnalyticsController::class, 'customerLifecycle']);
+
             // round robin assignment settings
             Route::group(['prefix' => 'settings'], function () {
                 Route::get('assignment-settings', [AssignmentSettingController::class, 'index']);
