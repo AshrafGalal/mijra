@@ -93,6 +93,8 @@ class ConversationController extends Controller
             'whatsapp' => dispatch(new \App\Jobs\SendWhatsAppMessageJob($message)),
             'facebook' => dispatch(new \App\Jobs\SendFacebookMessageJob($message)),
             'instagram' => dispatch(new \App\Jobs\SendInstagramMessageJob($message)),
+            'tiktok' => dispatch(new \App\Jobs\SendTikTokMessageJob($message)),
+            'gmb' => dispatch(new \App\Jobs\SendGoogleBusinessMessageJob($message)),
             'email' => dispatch(new \App\Jobs\SendEmailMessageJob($message)),
             'sms' => dispatch(new \App\Jobs\SendSmsMessageJob($message)),
             default => null,

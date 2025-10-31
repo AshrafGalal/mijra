@@ -10,6 +10,12 @@ enum CustomerSourceEnum: int
     case FACEBOOK = 4;
     case INSTAGRAM = 5;
     case SHOPIFY = 6;
+    case TIKTOK = 7;
+    case SALLA = 8;
+    case WOOCOMMERCE = 9;
+    case GMB = 10;
+    case EMAIL = 11;
+    case SMS = 12;
 
     public function getLabel(): string
     {
@@ -20,6 +26,12 @@ enum CustomerSourceEnum: int
             self::FACEBOOK => 'Facebook',
             self::INSTAGRAM => 'Instagram',
             self::SHOPIFY => 'Shopify',
+            self::TIKTOK => 'TikTok',
+            self::SALLA => 'Salla',
+            self::WOOCOMMERCE => 'WooCommerce',
+            self::GMB => 'Google Business',
+            self::EMAIL => 'Email',
+            self::SMS => 'SMS',
         };
     }
 

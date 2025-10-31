@@ -100,4 +100,45 @@ return [
         'token' => env('TWILIO_TOKEN'),
         'from' => env('TWILIO_FROM'), // Your Twilio phone number
     ],
+
+    'tiktok' => [
+        'app_id' => env('TIKTOK_APP_ID'),
+        'app_secret' => env('TIKTOK_APP_SECRET'),
+        'access_token' => env('TIKTOK_ACCESS_TOKEN'),
+        'verify_token' => env('TIKTOK_VERIFY_TOKEN'),
+        'base_url' => env('TIKTOK_BASE_URL', 'https://business-api.tiktok.com'),
+    ],
+
+    'salla' => [
+        'client_id' => env('SALLA_CLIENT_ID'),
+        'client_secret' => env('SALLA_CLIENT_SECRET'),
+        'redirect' => env('SALLA_REDIRECT_URI'),
+        'webhook_secret' => env('SALLA_WEBHOOK_SECRET'),
+        'base_url' => env('SALLA_BASE_URL', 'https://api.salla.sa'),
+    ],
+
+    'woocommerce' => [
+        'webhook_secret' => env('WOOCOMMERCE_WEBHOOK_SECRET'),
+        'consumer_key' => env('WOOCOMMERCE_CONSUMER_KEY'),
+        'consumer_secret' => env('WOOCOMMERCE_CONSUMER_SECRET'),
+        'store_url' => env('WOOCOMMERCE_STORE_URL'),
+    ],
+
+    'gmb' => [
+        'service_account_key' => env('GMB_SERVICE_ACCOUNT_KEY'),
+        'access_token' => env('GMB_ACCESS_TOKEN'),
+        'base_url' => env('GMB_BASE_URL', 'https://businessmessages.googleapis.com/v1'),
+    ],
+
+    'pymob' => [
+        'api_key' => env('PYMOB_API_KEY'),
+        'secret_key' => env('PYMOB_SECRET_KEY'),
+        'base_url' => env('PYMOB_BASE_URL', 'https://api.pymob.com'),
+    ],
+
+    'moyasar' => [
+        'api_key' => env('MOYASAR_API_KEY'),
+        'secret_key' => env('MOYASAR_SECRET_KEY'),
+        'base_url' => env('MOYASAR_BASE_URL', 'https://api.moyasar.com'),
+    ],
 ];

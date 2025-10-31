@@ -67,6 +67,11 @@ Route::group(['middleware' => 'guest', 'prefix' => 'auth'], function () {
         Route::get('callback', [ShopifyController::class, 'callback']);
     });
 
+    Route::prefix('salla')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Api\Landlord\OAuth\SallaController::class, 'redirectToProvider']);
+        Route::get('callback', [\App\Http\Controllers\Api\Landlord\OAuth\SallaController::class, 'callback']);
+    });
+
 });
 
 Route::prefix('auth')->group(function () {
