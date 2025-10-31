@@ -93,6 +93,8 @@ class ConversationController extends Controller
             'whatsapp' => dispatch(new \App\Jobs\SendWhatsAppMessageJob($message)),
             'facebook' => dispatch(new \App\Jobs\SendFacebookMessageJob($message)),
             'instagram' => dispatch(new \App\Jobs\SendInstagramMessageJob($message)),
+            'email' => dispatch(new \App\Jobs\SendEmailMessageJob($message)),
+            'sms' => dispatch(new \App\Jobs\SendSmsMessageJob($message)),
             default => null,
         };
 
@@ -199,6 +201,42 @@ class ConversationController extends Controller
         $stats = $this->conversationService->getStatistics();
 
         return ApiResponse::success(data: $stats);
+    }
+
+    /**
+     * Transfer conversation to another user.
+     */
+    public function transfer(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'to_user_id' => 'required|integer|exists:users,id',
+            'reason' => 'nullable|string|max:500',
+        ]);
+
+        $transferService = app(\App\Services\Tenant\ConversationTransferService::class);
+        
+        $conversation = $transferService->transfer(
+            conversationId: $id,
+            toUserId: $validated['to_user_id'],
+            transferredBy: auth()->id(),
+            reason: $validated['reason'] ?? null
+        );
+
+        return ApiResponse::success(
+            message: 'Conversation transferred successfully',
+            data: new \App\Http\Resources\Tenant\ConversationResource($conversation)
+        );
+    }
+
+    /**
+     * Get transfer history for a conversation.
+     */
+    public function transferHistory($id)
+    {
+        $transferService = app(\App\Services\Tenant\ConversationTransferService::class);
+        $history = $transferService->getTransferHistory($id);
+
+        return ApiResponse::success(data: $history);
     }
 }
 

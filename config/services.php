@@ -94,4 +94,10 @@ return [
         'verify_token' => env('WHATSAPP_VERIFY_TOKEN'),
         'base_url' => env('WHATSAPP_BASE_URL', 'https://graph.facebook.com'),
     ],
+
+    'twilio' => [
+        'sid' => env('TWILIO_SID'),
+        'token' => env('TWILIO_TOKEN'),
+        'from' => env('TWILIO_FROM'), // Your Twilio phone number
+    ],
 ];

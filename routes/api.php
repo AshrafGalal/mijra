@@ -90,6 +90,30 @@ Route::group(['middleware' => ['auth:sanctum', 'tenant', 'setTimeZone', 'locale'
             Route::get('analytics/time-series', [\App\Http\Controllers\Api\Tenant\AnalyticsController::class, 'timeSeries']);
             Route::get('analytics/customer-lifecycle', [\App\Http\Controllers\Api\Tenant\AnalyticsController::class, 'customerLifecycle']);
 
+            // Canned Responses
+            Route::get('canned-responses/most-used', [\App\Http\Controllers\Api\Tenant\CannedResponseController::class, 'mostUsed']);
+            Route::get('canned-responses/categories', [\App\Http\Controllers\Api\Tenant\CannedResponseController::class, 'categories']);
+            Route::get('canned-responses/by-shortcut', [\App\Http\Controllers\Api\Tenant\CannedResponseController::class, 'getByShortcut']);
+            Route::post('canned-responses/{id}/use', [\App\Http\Controllers\Api\Tenant\CannedResponseController::class, 'use']);
+            Route::apiResource('canned-responses', \App\Http\Controllers\Api\Tenant\CannedResponseController::class);
+
+            // Conversation Transfer
+            Route::post('conversations/{conversation}/transfer', [\App\Http\Controllers\Api\Tenant\ConversationController::class, 'transfer']);
+            Route::get('conversations/{conversation}/transfer-history', [\App\Http\Controllers\Api\Tenant\ConversationController::class, 'transferHistory']);
+
+            // Bulk Actions
+            Route::post('conversations/bulk-assign', [\App\Http\Controllers\Api\Tenant\BulkActionsController::class, 'bulkAssign']);
+            Route::post('conversations/bulk-status', [\App\Http\Controllers\Api\Tenant\BulkActionsController::class, 'bulkUpdateStatus']);
+            Route::post('conversations/bulk-tags/add', [\App\Http\Controllers\Api\Tenant\BulkActionsController::class, 'bulkAddTags']);
+            Route::post('conversations/bulk-tags/remove', [\App\Http\Controllers\Api\Tenant\BulkActionsController::class, 'bulkRemoveTags']);
+            Route::post('conversations/bulk-mark-read', [\App\Http\Controllers\Api\Tenant\BulkActionsController::class, 'bulkMarkAsRead']);
+            Route::post('conversations/bulk-archive', [\App\Http\Controllers\Api\Tenant\BulkActionsController::class, 'bulkArchive']);
+            Route::post('conversations/export', [\App\Http\Controllers\Api\Tenant\BulkActionsController::class, 'export']);
+
+            // Customer 360 Profile
+            Route::get('customers/{customer}/profile', [\App\Http\Controllers\Api\Tenant\CustomerProfileController::class, 'show']);
+            Route::get('customers/{customer}/engagement-score', [\App\Http\Controllers\Api\Tenant\CustomerProfileController::class, 'engagementScore']);
+
             // round robin assignment settings
             Route::group(['prefix' => 'settings'], function () {
                 Route::get('assignment-settings', [AssignmentSettingController::class, 'index']);
