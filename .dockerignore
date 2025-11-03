@@ -1,0 +1,8 @@
+.git
+node_modules
+vendor
+storage/logs
+.env
+whatsapp-service/.wwebjs_auth
+whatsapp-service/.wwebjs_cache
+

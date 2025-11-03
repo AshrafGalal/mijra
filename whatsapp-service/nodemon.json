@@ -1,0 +1,14 @@
+{
+    "watch": ["src", "services"],
+    "signal": "SIGTERM",
+    "delay": 2000,
+    "ext": "js,json",
+
+    "ignore": [
+        "node_modules",
+        ".wwebjs_auth",
+        "sessions",
+        "tmp",
+        "media"
+    ]
+}

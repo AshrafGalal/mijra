@@ -1,0 +1,148 @@
+<?php
+
+return [
+    'already_active' => 'Subscription is already active.',
+    'already_canceled' => 'Subscription is already canceled.',
+    'already_expired' => 'Subscription is already expired.',
+    'already_suspended' => 'Subscription is already suspended.',
+    'already_past_due' => 'Subscription is already past due.',
+    'cannot_activate_canceled' => 'Cannot activate a canceled subscription.',
+    'cannot_expire_canceled' => 'Cannot expire a canceled subscription.',
+    'cannot_suspend_canceled' => 'Cannot suspend a canceled subscription.',
+    'cannot_mark_past_due_canceled' => 'Cannot mark a canceled subscription as past due.',
+    'cannot_expire_pending' => 'Cannot expire a pending subscription.',
+    'cannot_suspend_pending' => 'Cannot suspend a pending subscription.',
+    'cannot_mark_past_due_pending' => 'Cannot mark a pending subscription as past due.',
+    'cannot_suspend_expired' => 'Cannot suspend an expired subscription.',
+    'cannot_mark_past_due_expired' => 'Cannot mark an expired subscription as past due.',
+    'cannot_mark_past_due_suspended' => 'Cannot mark a suspended subscription as past due.',
+
+    // Days of the week
+    'days' => [
+        'monday' => 'Monday',
+        'tuesday' => 'Tuesday',
+        'wednesday' => 'Wednesday',
+        'thursday' => 'Thursday',
+        'friday' => 'Friday',
+        'saturday' => 'Saturday',
+        'sunday' => 'Sunday',
+    ],
+
+    // feature----------------------------------
+    'limit' => 'Limits',
+    'feature' => 'Features',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+    'tenant_missing' => 'We couldn’t find your account. Please check the link you used or contact support.',
+    'sequential' => 'Sequential',
+    'random' => 'Random',
+    'subscription' => [
+        'pending' => 'Pending',
+        'active' => 'Active',
+        'canceled' => 'Canceled',
+        'expired' => 'Expired',
+        'suspended' => 'Suspended',
+        'past_due' => 'Past Due',
+        'monthly' => 'Monthly',
+        'yearly' => 'Yearly',
+        'lifetime' => 'Lifetime',
+    ],
+    'stripe' => [
+        'incorrect_number' => 'The card number is incorrect.',
+        'invalid_number' => 'The card number is not a valid credit card number.',
+        'invalid_expiry_month' => 'The card\'s expiration month is invalid.',
+        'invalid_expiry_year' => 'The card\'s expiration year is invalid.',
+        'invalid_cvc' => 'The card\'s security code is invalid.',
+        'expired_card' => 'The card has expired.',
+        'incorrect_cvc' => 'The card\'s security code is incorrect.',
+        'incorrect_zip' => 'The card\'s ZIP code failed validation.',
+        'card_declined' => 'The card was declined.',
+        'processing_error' => 'An error occurred while processing the card.',
+        'rate_limit' => 'Too many requests, please try again later.',
+
+        // Decline codes
+        'insufficient_funds' => 'The card has insufficient funds.',
+        'lost_card' => 'The card is reported lost.',
+        'stolen_card' => 'The card is reported stolen.',
+        'do_not_honor' => 'The card was declined by the issuer.',
+        'transaction_not_allowed' => 'This transaction is not allowed on the card.',
+
+        'default' => 'An error occurred while processing your payment. Please try again or use a different card.',
+
+    ],
+    'activation_code' => [
+        'status' => [
+            'pending' => 'Pending',
+            'available' => 'Available',
+            'used' => 'Used',
+            'expired' => 'Expired',
+            'blocked' => 'Blocked',
+        ],
+    ],
+    'collections' => [
+        'status' => [
+            'pending' => 'Pending',
+            'collected' => 'Collected',
+        ],
+    ],
+    'task_status' => [
+        'pending' => 'Pending',
+        'in_progress' => 'In Progress',
+        'completed' => 'Completed',
+        'overdue' => 'Overdue',
+        'cancelled' => 'Cancelled',
+    ],
+    'priority' => [
+        'low' => 'Low',
+        'medium' => 'Medium',
+        'high' => 'High',
+        'urgent' => 'Urgent',
+    ],
+    'tenant_user' => [
+        'name_required' => 'Name is required.',
+        'name_string' => 'Name must be a string.',
+        'email_required' => 'Email is required.',
+        'email_email' => 'Email must be a valid email address.',
+        'email_unique' => 'This email is already taken.',
+        'role_id_required' => 'Role is required.',
+        'role_id_integer' => 'Role ID must be an integer.',
+        'role_id_exists' => 'Selected role does not exist.',
+        'phone_string' => 'Phone must be a string.',
+        'department_id_integer' => 'Department ID must be an integer.',
+        'department_id_exists' => 'Selected department does not exist.',
+        'tenant_id_required' => 'Tenant is required.',
+        'tenant_id_integer' => 'Tenant ID must be an integer.',
+        'tenant_id_exists' => 'Selected tenant does not exist.',
+    ],
+    'stage' => [
+        'name_required' => 'The stage name is required.',
+        'name_string' => 'The stage name must be a string.',
+        'name_max' => 'The stage name may not be greater than 255 characters.',
+        'workflow_id_required' => 'The workflow id is required.',
+        'workflow_id_integer' => 'The workflow id must be an integer.',
+        'workflow_id_exists' => 'The selected workflow does not exist.',
+        'is_active_required' => 'The active status is required.',
+        'is_active_boolean' => 'The active status must be true or false.',
+    ],
+    'feedback_status' => [
+        'new' => 'New',
+        'responded' => 'Responded',
+        'resolved' => 'Resolved',
+        'escalated' => 'Escalated',
+    ],
+    'opportunity' => [
+        'status' => [
+            'active' => 'Active',
+            'lost' => 'Lost',
+            'won' => 'Won',
+            'abandoned' => 'Abandoned',
+        ],
+    ],
+
+    'integration' => [
+        'shopify_hmac_exception_message' => 'Authentication failed: We could not verify the request from Shopify. Please try again.',
+        'shopify_token_exchange_exception_message' => 'Connection failed: We could not complete authentication with Shopify. Please try again.',
+        'shopify_tenant_not_exists_exception_message' => 'We couldn’t find your account. Please check and try again.',
+        'shopify_platform_not_exists_exception_message' => 'We couldn’t connect to Shopify because the configuration is missing. Please contact support',
+    ],
+];
